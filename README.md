@@ -4,6 +4,6 @@
 
 ### Запуск тестов
 
-npm test
+npx playwright test
 
 ### При пуше в main ветку запускается пайплайн в Github Actions для прогона тестов и публикации отчета на GitHub Pages
