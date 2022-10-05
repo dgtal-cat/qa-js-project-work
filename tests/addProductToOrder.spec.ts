@@ -10,15 +10,18 @@ test('Добавление товара в корзину', async ({ page }) => 
     const productPage = new ProductPage(page)
     const productsList = new ProductsList(page)
 
-    await mainPage.openMainPageByUrl();
+    await mainPage.open();
     await mainPage.clickFirstPopularCategory()
-    await productsList.clickFirstProductFromList()
-    const productTitle = await productPage.getProductTitle() //нужно доработать локатор
+    await productsList.openFirstProductFromList()
     console.log('Перешли на страницу товара')
+
+    const productTitle = await productPage.getProductTitle()
     console.log('Наименование товара: ', productTitle?.trim());
 
-    await productPage.clickAddToOrderButton()
+    await productPage.addToOrder()
+    console.log('Добавили товар в корзину')
     await productPage.goToOrderPageFromModal()
+    console.log('Перешли в корзину')
 
     expect(await orderPage.getFirstProductTitle()).toBe(productTitle)
     console.log('Наименование товара в корзине соответствует')

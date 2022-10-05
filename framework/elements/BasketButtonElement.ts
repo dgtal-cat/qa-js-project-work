@@ -1,9 +1,9 @@
 import BaseElement from "./BaseElement";
 
-export default class CartButtonElement extends BaseElement {
+export default class BasketButtonElement extends BaseElement {
     locator = this.page.locator('.HeaderMenu__button_basket')
 
-    clickOnCartButton = () => {
+    openBasket = () => {
         this.locator.click()
     }
 }

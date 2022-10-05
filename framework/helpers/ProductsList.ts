@@ -7,7 +7,12 @@ export default class ProductsList {
         this.page = page
     }
 
-    clickFirstProductFromList = async () => {
-        await this.page.locator(':nth-match(.ProductCardVertical__name, 1)').click()
+    openFirstProductFromList = async () => {
+        await this.page.locator('.ProductCardVertical__name >> nth=0').click()
+    }
+
+    getFirstProductTitle = async () => {
+        const firstProductTitle = await this.page.textContent('.ProductCardVertical__name')
+        return firstProductTitle?.trim()
     }
 }

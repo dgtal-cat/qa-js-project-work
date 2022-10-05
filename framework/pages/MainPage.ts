@@ -1,4 +1,3 @@
-import { Locator } from "@playwright/test";
 import BasePage from "./BasePage";
 
 export default class MainPage extends BasePage {
@@ -6,20 +5,11 @@ export default class MainPage extends BasePage {
         super(page)
     }
 
-    openMainPageByUrl = async () => {
-        try {
-            await this.page.goto('https://www.citilink.ru')
-        } catch (error) {
-            throw error
-        }
+    open = async () => {
+        await this.page.goto('https://www.citilink.ru/')
     }
 
     clickFirstPopularCategory = async () => {
-        try {
-            await this.page.locator(':nth-match(.PopularCategoryMain__link, 1)').click()
-        } catch (error) {
-            throw error
-        }
+        await this.page.locator('.PopularCategoryMain__link >> nth=0').click()
     }
-
 }
