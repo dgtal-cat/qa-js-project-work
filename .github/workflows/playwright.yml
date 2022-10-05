@@ -13,14 +13,19 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
+
       - name: Install dependencies
         run: npm ci
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+
       - name: Bot notify - Tests STARTS ✉️
         run: 'curl -X GET https://api.telegram.org/bot${{secrets.BOT_TOKEN}}/sendMessage -H "Content-Type: application/json" -d ''{"chat_id": "${{secrets.CHAT_ID}}","text": "Tests STARTS! 🧬"}'''
+
       - name: Run Playwright tests
         run: npx playwright test
+
       - name: Bot notify - Tests DONE ✉️
         run: 'curl -X GET https://api.telegram.org/bot${{secrets.BOT_TOKEN}}/sendMessage -H "Content-Type: application/json" -d ''{"chat_id": "${{secrets.CHAT_ID}}","text": "Testing DONE! 🆗"}'''
       - uses: actions/upload-artifact@v2
@@ -29,9 +34,11 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: playwright-report
+
       - name: Bot notify - link to html report ✉️
         run: 'curl -X GET https://api.telegram.org/bot${{secrets.BOT_TOKEN}}/sendMessage -H "Content-Type: application/json" -d ''{"chat_id": "${{secrets.CHAT_ID}}","text": "Link to HTML report - https://dgtal-cat.github.io/qa-js-project-work/index.html 📊"}'''
