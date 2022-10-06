@@ -13,9 +13,9 @@ test('Поиск товара через строку поиска', async ({ pa
     await searchField.searchForProduct('стиральная машина indesit')
     console.log('Начали поиск...')
 
-    const searchResultCount = searchPage.getSearchResultCount()
+    const searchResultCount = await searchPage.getSearchResultCount()
     console.log('Количество найденных товаров ', searchResultCount)
 
     await expect(searchResultCount).toBeGreaterThan(0)
-    console.log('Количество найденных товаров больше 0')
+    console.log('Товары по запросу успешно найдены')
 })
