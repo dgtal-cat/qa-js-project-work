@@ -11,7 +11,7 @@ export default class OrderPage extends BasePage {
     }
 
     getFirstProductTitle = async () => {
-        const firstProductTitle = await this.page.textContent('.ProductCardForBasket__name')
+        const firstProductTitle = await this.page.textContent('.ProductCardForBasket__name >> nth=0')
         return firstProductTitle?.trim()
     }
 }
