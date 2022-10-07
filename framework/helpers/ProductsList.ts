@@ -12,7 +12,7 @@ export default class ProductsList {
     }
 
     getFirstProductTitle = async () => {
-        const firstProductTitle = await this.page.textContent('.ProductCardVertical__name')
+        const firstProductTitle = await this.page.textContent('.ProductCardVertical__name >> nth=0')
         return firstProductTitle?.trim()
     }
 }
